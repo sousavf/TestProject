@@ -5,19 +5,11 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Address {
+public class Address implements Copyable<Address> {
 
     private String streetName;
     private String postalCode;
     private String country;
-
-    public static Address clone(Address address) {
-        return Address.builder()
-                .streetName(address.getStreetName())
-                .postalCode(address.getPostalCode())
-                .country(address.getCountry())
-                .build();
-    }
 
     public Address copy() {
         return Address.builder()
@@ -27,4 +19,12 @@ public class Address {
                 .build();
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "streetName='" + streetName + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }
